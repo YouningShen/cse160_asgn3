@@ -1,38 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Assignment 3</title>
-  </head>
+<head>
+  <meta charset="utf-8" />
+  <title>Trapped Sluggie</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Courier New', monospace;
+      background-color: #111;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100vh;
+    }
 
-  <body onload="main()">
-    <h2>Trapped Slugie!!</h2>
-    <canvas id="webgl" width="400" height="400">
+    h1 {
+      font-size: 2.5em;
+      margin: 20px 0 10px;
+      color: #0f0;
+      text-shadow: 0 0 10px #0f0;
+    }
+
+    h3 {
+      font-weight: normal;
+      margin-top: 0;
+      color: #ccc;
+    }
+
+    #webgl {
+      border: 3px solid #0f0;
+      background-color: #000;
+      margin-top: 10px;
+    }
+
+    #fps {
+      margin: 10px;
+      font-size: 1em;
+      color: #0f0;
+    }
+
+    .controls {
+      margin: 10px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .controls button {
+      background-color: #222;
+      color: #0f0;
+      border: 1px solid #0f0;
+      padding: 8px 12px;
+      cursor: pointer;
+      transition: 0.2s;
+      font-weight: bold;
+    }
+
+    .controls button:hover {
+      background-color: #0f0;
+      color: #000;
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 10px;
+      font-size: 0.9em;
+      color: #666;
+    }
+  </style>
+</head>
+
+<body onload="main()">
+  <h1>🧩 Trapped Sluggie</h1>
+  <h3>Help Sluggie find a way out of this mysterious cube world</h3>
+
+  <canvas id="webgl" width="512" height="512">
     Please use a browser that supports "canvas"
-    </canvas>
-    <!--fps-->
-    <p id="fps">hallo</p>
-    <!--buttons to toggle animation-->
-    <p>
-    Animation:
-    <button type="button" id="animationYellowOnButton">ON</button>
-    <button type="button" id="animationYellowOffButton">OFF</button>
-    
-    <h2>Help Slugie escape!!</h2>
-    <h4>Somewhere in this world, you find a way to escape!</h4>
+  </canvas>
 
-    <!--scripts & libs to load-->
-    <script src="../lib/webgl-utils.js"></script>
-    <script src="../lib/webgl-debug.js"></script>
-    <script src="../lib/cuon-utils.js"></script>
-    <script src="../lib/cuon-matrix.js"></script>
+  <p id="fps">FPS: ...</p>
 
-    <script src="Camera.js"></script>
-    <script src="World.js"></script>
-    <script src="Point.js"></script>
-    <script src="Triangle.js"></script>
-    <script src="Circle.js"></script>
-    <script src="Cube.js"></script>
-    <script src="Pyramid.js"></script>
-  </body>
+  <div class="controls">
+    <button id="animationYellowOnButton">Start Animation</button>
+    <button id="animationYellowOffButton">Stop Animation</button>
+  </div>
+
+  <footer>
+    Arrow keys or WASD to move. Q/E to rotate. Shift+Drag to turn camera.
+  </footer>
+
+  <!-- scripts & libs -->
+  <script src="../lib/webgl-utils.js"></script>
+  <script src="../lib/webgl-debug.js"></script>
+  <script src="../lib/cuon-utils.js"></script>
+  <script src="../lib/cuon-matrix.js"></script>
+
+  <script src="Camera.js"></script>
+  <script src="World.js"></script>
+  <script src="Point.js"></script>
+  <script src="Triangle.js"></script>
+  <script src="Circle.js"></script>
+  <script src="Cube.js"></script>
+  <script src="Pyramid.js"></script>
+</body>
 </html>
