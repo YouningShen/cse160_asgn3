@@ -272,7 +272,7 @@ function initTextures(gl) {
   // register the event handler to be called on loading an image
   image0.onload = function(){ sendTextureToTEXTURE0(image0); };
   // tell the browser to load an image
-  image0.src = '../resources/obama.png';
+  image0.src = '../resources/grass.png';
 
   // register the event handler to be called on loading an image
   image1.onload = function(){ sendTextureToTEXTURE1(image1); };
