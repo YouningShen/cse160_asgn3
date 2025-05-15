@@ -36,9 +36,8 @@ class Camera {
     // left
     moveLeft() {
         // d = at - eye
-        // let d = new Vector3();
-        // d.set(this.at);
-        let d = new Vector3(this.at.elements);
+        let d = new Vector3();
+        d.set(this.at);
         d.sub(this.eye);
         // d = d.normalize()
         d = d.normalize();
