@@ -61,6 +61,9 @@ function setupWebGL() {
   // Retrieve <canvas> element
   canvas = document.getElementById('webgl');
 
+  canvas.setAttribute('tabindex','1');  // ensure it can be focused
+  canvas.addEventListener('click', () => canvas.focus());  // auto-focus when clicked
+
   // Get the rendering context for WebGL
   // gl = getWebGLContext(canvas);
   gl = canvas.getContext("webgl", { preserveDrawingBuffer: true });
@@ -195,6 +198,8 @@ var g_camera = new Camera();
 
 // handle keydown events
 function keydown(ev) {
+  console.log("Key pressed:", ev.key);
+
   if (ev.key == "w") {
     g_camera.moveForward();
     console.log("forward!");
