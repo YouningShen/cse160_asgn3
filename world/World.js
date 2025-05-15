@@ -250,6 +250,23 @@ function addActionsForHTMLUI() {
       g_lastY = y;
     }
   }
+
+  // Mouse clicks for block add/delete
+  canvas.addEventListener("mousedown", function (ev) {
+    ev.preventDefault(); // prevent right-click menu
+    if (ev.button === 0) {  // Left click
+      addBlockAtCamera();
+    } else if (ev.button === 2) {  // Right click
+      deleteBlockAtCamera();
+    }
+    renderAllShapes();
+  });
+
+  // Prevent right-click menu on canvas
+  canvas.addEventListener("contextmenu", function (ev) {
+    ev.preventDefault();
+  });
+  
 }
 
 // initTextures
@@ -649,4 +666,39 @@ function sendTextToHTML(text, ID){
   }
   // set text
   element.innerHTML = text;
+}
+
+// Get mouse ray target block
+function getBlockPosFromCamera() {
+  let dir = new Vector3([
+    g_camera.at.elements[0] - g_camera.eye.elements[0],
+    g_camera.at.elements[1] - g_camera.eye.elements[1],
+    g_camera.at.elements[2] - g_camera.eye.elements[2],
+  ]);
+  dir.normalize();
+
+  let target = new Vector3([
+    g_camera.eye.elements[0] + dir.elements[0] * 2,
+    g_camera.eye.elements[1] + dir.elements[1] * 2,
+    g_camera.eye.elements[2] + dir.elements[2] * 2,
+  ]);
+
+  let bx = Math.floor(target.elements[0] + 4.5);
+  let by = Math.floor(target.elements[2] + 4.5);
+
+  return [bx, by];
+}
+
+function addBlockAtCamera() {
+  let [bx, by] = getBlockPosFromCamera();
+  if (bx >= 0 && bx < g_map[0].length && by >= 0 && by < g_map.length) {
+    g_map[by][bx] = 1;  // Place block
+  }
+}
+
+function deleteBlockAtCamera() {
+  let [bx, by] = getBlockPosFromCamera();
+  if (bx >= 0 && bx < g_map[0].length && by >= 0 && by < g_map.length) {
+    g_map[by][bx] = 0;  // Remove block
+  }
 }
